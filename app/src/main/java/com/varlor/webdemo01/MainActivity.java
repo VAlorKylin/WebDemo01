@@ -6,12 +6,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -136,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             byte[] data = GetData.getImage(PIC_URL);
                             bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            SaveFileTool.saveImage(data, MainActivity.this);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
